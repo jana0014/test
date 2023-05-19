@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Faculty</title>
+</head>
+<body>
+  <h1>Add Faculty</h1>
+  <form id="add-faculty-form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <br><br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+    <br><br>
+    <label for="university">University:</label>
+    <select id="university" name="university" required>
+      <option value="">Select University</option>
+      <option value="university1">University 1</option>
+      <option value="university2">University 2</option>
+      <option value="university3">University 3</option>
+      <!-- Add more options for available universities -->
+    </select>
+    <br><br>
+    <input type="submit" value="Add Faculty">
+  </form>
+
+  <script>
+    const form = document.getElementById('add-faculty-form');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const address = document.getElementById('address').value;
+      const university = document.getElementById('university').value;
+
+      const facultyData = {
+        name: name,
+        address: address,
+        university: university
+      };
+
+      fetch('http://localhost:10000/api/faculty', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(facultyData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Faculty created:', data);
+        // Reset the form after successful submission
+        form.reset();
+      })
+      .catch(error => {
+        console.error('Failed to create faculty:', error);
+      });
+    });
+  </script>
+</body>
+</html>

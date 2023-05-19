@@ -1,0 +1,13 @@
+{
+    "development": {
+        "port": 10000,
+        "MONGO_USERNAME": "janaUser1",
+        "MONGO_PASSWORD": "janaBanana12"
+        
+    },
+    "live" : {
+        "port": 8080,
+        "MONGO_USERNAME": "admin",
+        "MONGO_PASSWORD": "admin"
+    }
+}
